@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const ROCKET_URL = 'https://random-data-api.com/api/v2/users?size=10&is_xml=true';
+const API_URL = 'https://random-data-api.com/api/v2/users?size=10&is_xml=true';
 
-export const fetchRockets = createAsyncThunk(
-  'rockets/fetchRockets',
+export const fetchUserProfile = createAsyncThunk(
+  'rockets/fetchUserProfile',
   async () => {
-    const response = await axios.get(ROCKET_URL);
+    const response = await axios.get(API_URL);
     return response.data;
   }
 );
@@ -24,22 +24,22 @@ const rocketsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRockets.pending, (state) => {
+      .addCase(fetchUserProfile.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchRockets.fulfilled, (state, action) => {
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.rockets = action.payload;
       })
-      .addCase(fetchRockets.rejected, (state, action) => {
+      .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
-export const selectAllRockets = (state) => state.rockets.rockets;
-export const getRocketsStatus = (state) => state.rockets.status;
-export const getRocketsError = (state) => state.rockets.error;
+export const getAllUserProfileData = (state) => state.rockets.rockets;
+export const getAllUserProfileStatus = (state) => state.rockets.status;
+export const getAllUserProfileError = (state) => state.rockets.error;
 
 export default rocketsSlice.reducer;
