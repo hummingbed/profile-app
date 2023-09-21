@@ -5,7 +5,7 @@ import {
     getAllUserProfileStatus,
     getAllUserProfileError,
     fetchUserProfile,
-} from '../sliceMachine/rocketSlice.js';
+} from '../sliceMachine/userSlice.js';
 
 const UsersComponent = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const UsersComponent = () => {
     let contentToDisplay = '';
     if (userProfileStatus === 'loading') {
         contentToDisplay = <h2 className='loading_state' >Loading...</h2>;
-    } else if (userProfileStatus === 'succeeded') {
+    } else if (userProfileStatus === 'success') {
         contentToDisplay = profileData.map((data) => (
             <div key={data.id}>
                 <a href="#ht" className="flex flex-col m-9 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">

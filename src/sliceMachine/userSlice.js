@@ -12,12 +12,12 @@ export const fetchUserProfile = createAsyncThunk(
 );
 
 const initialState = {
-  rockets: [],
+  users: [],
   status: 'idle',
   error: null,
 };
 
-const rocketsSlice = createSlice({
+const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {},
@@ -27,7 +27,7 @@ const rocketsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = 'success';
         state.users = action.payload;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
@@ -37,8 +37,8 @@ const rocketsSlice = createSlice({
   },
 });
 
-export const getAllUserProfileData = (state) => state.rockets.users;
-export const getAllUserProfileStatus = (state) => state.rockets.status;
-export const getAllUserProfileError = (state) => state.rockets.error;
+export const getAllUserProfileData = (state) => state.users.users;
+export const getAllUserProfileStatus = (state) => state.users.status;
+export const getAllUserProfileError = (state) => state.users.error;
 
-export default rocketsSlice.reducer;
+export default userSlice.reducer;
