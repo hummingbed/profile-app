@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_URL = 'https://random-data-api.com/api/v2/users?size=10&is_xml=true';
 
 export const fetchUserProfile = createAsyncThunk(
-  'rockets/fetchUserProfile',
+  'fetchUserProfile',
   async () => {
     const response = await axios.get(API_URL);
     return response.data;
@@ -17,9 +17,8 @@ const initialState = {
   error: null,
 };
 
-
 const rocketsSlice = createSlice({
-  name: 'rockets',
+  name: 'users',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -29,7 +28,7 @@ const rocketsSlice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.rockets = action.payload;
+        state.users = action.payload;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = 'failed';
@@ -38,7 +37,7 @@ const rocketsSlice = createSlice({
   },
 });
 
-export const getAllUserProfileData = (state) => state.rockets.rockets;
+export const getAllUserProfileData = (state) => state.rockets.users;
 export const getAllUserProfileStatus = (state) => state.rockets.status;
 export const getAllUserProfileError = (state) => state.rockets.error;
 
