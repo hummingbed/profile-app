@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import {
     getAllUserProfileData,
     getAllUserProfileStatus,
@@ -25,7 +27,7 @@ const UsersComponent = () => {
     } else if (userProfileStatus === 'success') {
         contentToDisplay = profileData.map((data) => (
             <div key={data.id}>
-                <a href="#ht" className="flex flex-col m-9 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <Link to={`/user/${data.id}`} className="flex flex-col m-9 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                     <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={data.avatar} alt="bread" />
                     <div className="flex flex-col justify-between p-4 leading-normal">
                         <small>first name:</small>
@@ -35,7 +37,7 @@ const UsersComponent = () => {
                         <small>email:</small>
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.email}</p>
                     </div>
-                </a>
+                </Link>
             </div>
         ));
     } else if (userProfileStatus === 'failed') {
