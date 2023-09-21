@@ -1,37 +1,43 @@
-// UserComponent
-import '../App.css';
-
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const UserComponent = () => {
+    const { id } = useParams(); 
+    const users = useSelector((state) => state.users.users);
+    const user = users.find((user) => user.id === Number(id));
+
+    if (!user) {
+        return <div>User not found</div>;
+    }
 
     return (
         <div>
-            <div className="dark:!bg-navy-800 px-9 shadow-shadow-500 shadow-3xl rounded-primary relative mx-auto flex h-full w-full max-w-[550px] flex-col items-center bg-white bg-cover bg-clip-border p-[16px] dark:text-white dark:shadow-none">
+            <div className="p-9 mt-20  flex-col items-center bg-white bg-cover bg-clip-border">
                 <div className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover" >
                     <div className="absolute -bottom-12 flex h-[88px] w-[88px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400">
-                        <img className="h-full w-full rounded-full" src="https://i.ibb.co/6YbS9ff/avatar11.png" alt="" />
+                        <img className="h-full w-full rounded-full" src={user.avatar} alt="" />
                     </div>
                 </div>
                 <div className="mt-16 flex flex-col items-center">
-                    <h4 className="text-bluePrimary text-xl font-bold">Adela Parkson</h4>
-                    <p className="text-lightSecondary text-base font-normal">Product Manager</p>
+                    <h4 className="text-bluePrimary text-xl font-bold">{user.first_name} </h4>
+                    <p className="text-lightSecondary text-base font-normal">{user.phone_number}</p>
                 </div>
                 <div className="mt-6 mb-3 flex gap-4 md:!gap-14">
                     <div className="flex flex-col items-center justify-center">
-                        <h3 className="text-bluePrimary text-2xl font-bold">17</h3>
-                        <p className="text-lightSecondary text-sm font-normal">Posts</p>
+                        <h6 className="text-bluePrimary  font-bold">{user.email}</h6>
+                        <p className="text-lightSecondary text-sm font-normal">email</p>
                     </div>
                     <div className="flex flex-col items-center justify-center">
-                        <h3 className="text-bluePrimary text-2xl font-bold">9.7K</h3>
-                        <p className="text-lightSecondary text-sm font-normal">Followers</p>
+                        <h6 className="text-bluePrimary  font-bold">{user.gender}</h6>
+                        <p className="text-lightSecondary text-sm font-normal">gender</p>
                     </div>
                     <div className="flex flex-col items-center justify-center">
-                        <h3 className="text-bluePrimary text-2xl font-bold">434</h3>
-                        <p className="text-lightSecondary text-sm font-normal">Following</p>
+                        <h6 className="text-bluePrimary  font-bold">{user.date_of_birth}</h6>
+                        <p className="text-lightSecondary text-sm font-normal">date of birth</p>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     );
 };
