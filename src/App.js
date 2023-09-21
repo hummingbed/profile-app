@@ -1,4 +1,4 @@
-import AllUsers from './component/rocket';
+import AllUsers from './component/UsersComponent';
 import './App.css';
 
 function App() {

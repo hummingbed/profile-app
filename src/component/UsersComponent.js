@@ -7,7 +7,7 @@ import {
     fetchUserProfile,
 } from '../sliceMachine/rocketSlice.js';
 
-const AllUsers = () => {
+const UsersComponent = () => {
     const dispatch = useDispatch();
     const profileData = useSelector(getAllUserProfileData);
     const userProfileStatus = useSelector(getAllUserProfileStatus);
@@ -49,4 +49,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default UsersComponent;
