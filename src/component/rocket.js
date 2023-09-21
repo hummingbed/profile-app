@@ -5,7 +5,7 @@ import {
     getAllUserProfileStatus,
     getAllUserProfileError,
     fetchUserProfile,
-} from './rocketSlice.js';
+} from '../sliceMachine/rocketSlice.js';
 
 const AllUsers = () => {
     const dispatch = useDispatch();
